@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="PL" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <form id="formularz">
+      Podaj hasło: <input type="password" id="haslo"> <br>
+      <input type="button" onclick="oblicz()" value="Sprawdz">
+    </form>
+
+    <script type="text/javascript">
+      function oblicz() {
+        var haslo = document.getElementById('haslo').value;
+
+        var passwd = haslo.split("");
+        var length = passwd.length;
+
+        for (var i = 0; i < length; i++) {
+          console.log(passwd[i]);
+          if (isNaN(passwd[i])){
+              //console.log("not num");
+              var ma_liczbe = false;
+            } else {
+              //console.log("num");
+              var ma_liczbe = true;
+              break;
+            }
+          }
+
+        if (length == 0){
+          wynik = "Wprowadz haslo";
+          document.getElementById("wynik").style.color = 'red';
+        } else if (length>=7 && ma_liczbe==true){
+          var wynik = "dobre";
+          document.getElementById("wynik").style.color = 'green';
+        } else if (length >= 4 && ma_liczbe == true){
+          wynik = "srednie";
+          document.getElementById("wynik").style.color = 'blue';
+        } else {
+          wynik = "slabe";
+          document.getElementById("wynik").style.color = 'yellow';
+        }
+
+        document.getElementById("wynik").innerHTML=wynik;
+      }
+    </script>
+    <p id="wynik"></p>
+  </body>
+</html>
